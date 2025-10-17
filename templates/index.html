@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Chatbot - Soda La Esquina</title>
+    <style>
+        body { font-family: Arial; max-width: 400px; margin: 30px auto; background: #fafafa; }
+        #chatbox { border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: auto; background: white; }
+        .msg { margin: 5px 0; }
+        .user { text-align: right; color: blue; }
+        .bot { text-align: left; color: green; }
+    </style>
+</head>
+<body>
+    <h2>Asistente de Soda La Esquina 🥤</h2>
+    <div id="chatbox"></div>
+    <input id="userInput" placeholder="Escribe tu mensaje..." style="width: 80%;">
+    <button onclick="sendMessage()">Enviar</button>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById("userInput");
+            const message = input.value.trim();
+            if (!message) return;
+
+            const chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += `<div class='msg user'><b>Tú:</b> ${message}</div>`;
+            input.value = "";
+
+            const res = await fetch("/chat", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({message})
+            });
+            const data = await res.json();
+            chatbox.innerHTML += `<div class='msg bot'><b>Bot:</b> ${data.reply}</div>`;
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
