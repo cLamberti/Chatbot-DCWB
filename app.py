@@ -9,8 +9,13 @@ from flask_cors import CORS
 load_dotenv()
 app = Flask(__name__)
 
-CORS(app, resources={r"/*": {"origins": ["https://dcwb.netlify.app", "http://localhost:*"]}})
-
+CORS(app, resources={
+    r"/*": {
+        "origins": ["https://dcwb.netlify.app", "http://localhost:*"],
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 # ============================================
@@ -157,44 +162,38 @@ def index():
 def serve_static(filename):
     return send_from_directory('static', filename)
 
-@app.after_request
-def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
-    response.headers.add('Access-Control-Allow-Methods', 'POST')
-    return response
 
-@app.route("/chat", methods=["POST"])
+@app.route("/chat", methods=["POST", "OPTIONS"])
 @rate_limit(max_per_minute=10)
 def chat():
-    user_message = request.json["message"]
+    # Manejar preflight OPTIONS request
+    if request.method == "OPTIONS":
+        return '', 204
 
     try:
-        completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+        data = request.get_json()
+        user_message = data.get("message", "").strip()
+
+        if not user_message:
+            return jsonify({"reply": "Por favor, escribí un mensaje válido."}), 400
+
+        chat_completion = client.chat.completions.create(
             messages=[
                 {"role": "system", "content": INFO},
                 {"role": "user", "content": user_message}
             ],
-            temperature=0.7,  # Un poco más de creatividad para ser más conversacional
-            max_tokens=300    # Más tokens para explicaciones detalladas
+            model="llama-3.3-70b-versatile",
+            temperature=0.7,
+            max_tokens=500
         )
 
-        reply = completion.choices[0].message.content
-        return jsonify({"reply": reply})
-    
+        reply = chat_completion.choices[0].message.content
+        return jsonify({"reply": reply}), 200
+
     except Exception as e:
-        error_str = str(e)
-        print(f"Error: {error_str}")
-        
-        if "rate_limit" in error_str.lower() or "429" in error_str:
-            return jsonify({
-                "reply": BUSY_MESSAGE
-            }), 200
-        
-        return jsonify({
-            "reply": ERROR_MESSAGE
-        }), 200
+        print(f"Error: {e}")
+        return jsonify({"reply": ERROR_MESSAGE}), 500
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
