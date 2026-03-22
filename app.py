@@ -172,8 +172,15 @@ def chat():
         reply = chat_completion.choices[0].message.content
         return jsonify({"reply": reply}), 200
 
+
     except Exception as e:
+
         print(f"Error: {e}")
+
+        import traceback
+
+        traceback.print_exc()
+
         return jsonify({"reply": ERROR_MESSAGE}), 500
 
 if __name__ == "__main__":
