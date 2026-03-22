@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 CORS(app,
     origins=[
-        "https://brewcode.vercel.app",
+        "https://brew-code.vercel.app",
         "https://brewcode.netlify.app",
         "http://localhost:3000",
         "http://localhost:5000",
