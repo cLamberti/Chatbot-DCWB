@@ -9,13 +9,12 @@ from flask_cors import CORS
 load_dotenv()
 app = Flask(__name__)
 
-CORS(app, resources={
-    r"/*": {
-        "origins": ["https://brewcode.vercel.app", "http://localhost:*"],
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"]
-    }
-})
+CORS(app,
+    origins=[ "https://brewcode.vercel.app", "https://localhost/*"],
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"],
+    supports_credentials=False
+)
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
@@ -145,12 +144,14 @@ def index():
 def serve_static(filename):
     return send_from_directory('static', filename)
 
-@app.route("/chat", methods=["POST", "OPTIONS"])
+@app.route("/chat", methods=["OPTIONS"])
+def chat_preflight():
+    # Render necesita un handler explicito para OPTIONS
+    return '', 204
+
+@app.route("/chat", methods=["POST"])
 @rate_limit(max_per_minute=10)
 def chat():
-    if request.method == "OPTIONS":
-        return '', 204
-
     try:
         data = request.get_json()
         user_message = data.get("message", "").strip()
