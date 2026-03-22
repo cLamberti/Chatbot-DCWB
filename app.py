@@ -10,7 +10,14 @@ load_dotenv()
 app = Flask(__name__)
 
 CORS(app,
-    origins=[ "https://brewcode.vercel.app", "https://localhost/*", "https://chatbot-dcwb.onrender.com/"],
+    origins=[
+        "https://brewcode.vercel.app",
+        "https://brewcode.netlify.app",
+        "http://localhost:3000",
+        "http://localhost:5000",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5000",
+    ],
     methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],
     supports_credentials=False
@@ -172,15 +179,8 @@ def chat():
         reply = chat_completion.choices[0].message.content
         return jsonify({"reply": reply}), 200
 
-
     except Exception as e:
-
         print(f"Error: {e}")
-
-        import traceback
-
-        traceback.print_exc()
-
         return jsonify({"reply": ERROR_MESSAGE}), 500
 
 if __name__ == "__main__":
