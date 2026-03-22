@@ -344,7 +344,7 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
-                const response = await fetch('https://chatbot-dcwb.onrender.com', {
+                const response = await fetch('https://chatbot-dcwb.onrender.com/', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
