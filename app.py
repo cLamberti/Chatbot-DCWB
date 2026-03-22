@@ -10,7 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 
 CORS(app,
-    origins=[ "https://brewcode.vercel.app", "https://localhost/*"],
+    origins=[ "https://brewcode.vercel.app", "https://localhost/*", "https://chatbot-dcwb.onrender.com/"],
     methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"],
     supports_credentials=False
