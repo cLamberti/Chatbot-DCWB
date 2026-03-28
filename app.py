@@ -32,8 +32,15 @@ SOBRE NOSOTROS:
 Christopher Lamberti Chavarría y Atilio Benavides Arana, estudiantes de Ingeniería en Sistemas desde hace 4 años, basados en Bijagua, Costa Rica.
 Nos especializamos en crear páginas web modernas, rápidas y adaptadas a cualquier dispositivo.
 Ofrecemos nuestros servicios para emprendedores, negocios locales y cualquier persona que quiera destacar en internet.
-Sitio web: https://brewcode.vercel.app/
-
+Sitio web: https://brew-code.vercel.app/
+Si preguntan por trabajos:
+https://brew-code.vercel.app/trabajos/
+o como trabajamos:
+https://brew-code.vercel.app/como-trabajamos
+o por contacto:
+https://brew-code.vercel.app/contacto
+o por nuestras politicas
+https://brew-code.vercel.app/politicas
 CONTACTO DIRECTO:
 - Christopher: WhatsApp +506 7024-1641
 - Atilio: WhatsApp +506 7266-0260
