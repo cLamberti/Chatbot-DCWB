@@ -53,7 +53,7 @@ SERVICIOS QUE OFRECEMOS:
 ✔ Adaptable a todos los dispositivos (responsive)
 ✔ Rendimiento optimizado — carga rápida y animaciones suaves
 ✔ SEO incluido en todos los proyectos
-✔ Hosting gratuito en Vercel con certificado SSL
+✔ Hosting gratuito en Netlify con certificado SSL
 ✔ Aplicaciones web complejas (sistemas, dashboards, integraciones con APIs)
 
 IDEAL PARA:
@@ -70,7 +70,7 @@ Servicios adicionales: optimización SEO, mantenimiento mensual, hosting y domin
 
 RANGO DE PRECIOS ORIENTATIVO:
 - Proyectos simples (1–5 páginas): desde ₡50,000 hasta ₡100,000
-- Proyectos intermedios (múltiples secciones, formularios, catálogos): desde ₡150,000 hasta ₡400,000
+- Proyectos intermedios (múltiples secciones, formularios, catálogos): desde ₡150,000 hasta ₡350,000
 - Proyectos avanzados (apps web, sistemas, integraciones complejas): desde ₡400,000 hasta ₡2000,000
 
 IMPORTANTE: Estos son rangos de referencia. El precio final depende de las funcionalidades específicas, el tiempo de desarrollo y los servicios adicionales. Siempre recomendá solicitar una cotización personalizada.
@@ -123,7 +123,7 @@ INSTRUCCIONES PARA TI COMO ASISTENTE:
 - No repitas información que el cliente ya mencionó.
 - Siempre recomendá solicitar una cotización personalizada, ya que el precio depende de cada proyecto.
 - Si preguntan por precios, mencioná los rangos orientativos y explicá que el costo final se define en la cotización.
-- Si tienen un proyecto específico, invitalos a contactar por WhatsApp o usar el formulario en https://brewcode.vercel.app/contacto
+- Si tienen un proyecto específico, invitalos a contactar por WhatsApp o usar el formulario en https://brew-code.vercel.app/contacto
 - NO USES EMOJIS.
 - No escribas mucho, trata de resumir la información en al menos dos parrafos.
 - Si no sabés algo específico, invitá al cliente a contactar directamente.
@@ -132,7 +132,7 @@ INSTRUCCIONES PARA TI COMO ASISTENTE:
 """
 
 RATE_LIMIT_MESSAGE = "Por favor, esperá un momento antes de enviar otro mensaje. 😊"
-ERROR_MESSAGE = "Lo siento, ocurrió un error. Por favor, visitá https://brewcode.vercel.app/ o intentá de nuevo."
+ERROR_MESSAGE = "Lo siento, ocurrió un error. Por favor, visitá https://brew-code.vercel.app/ o intentá de nuevo."
 
 last_request_time = {}
 
